@@ -1,48 +1,47 @@
 # Second_Challenge
 classDiagram
-  Bank --* Client: has
-  Bank --* Account: has
-  Client --* Transaction: performs
-  Bank --* ATM: has
-  Client --* ATM: uses
+    Bank --* Client: has
+    Bank --* Account: has
+    Client --* Transaction: performs
+    Bank --* ATM: has
+    Client --* ATM: uses
+    class Bank {
+        + str name
+        + str address
+        + str phone
+        + str email
+        + list[Client] clients
+        + list[Account] accounts
+        + list[ATM] ATMs
+    }
+    
+    class Client {
+        + str name
+        + str address
+        + str phone
+        + str email
+        + list[Account] accounts
+    }
 
-  class Bank {
-    + name: str
-    + address: str
-    + phone: str
-    + email: str
-    + clients: list[Client]
-    + accounts: list[Account]
-    + ATMs: list[ATM]
-  }
+    class Account {
+        + str number
+        + float balance
+        + str type
+        + float interest_rate
+        + list[Transaction] Tratransactions
+    }
 
-  class Client {
-    + name: str
-    + address: str
-    + phone: str
-    + email: str
-    + accounts: list[Account]
-  }
+    class Transaction {
+        + datetime date
+        + float amount
+        + str type
+        + Account from_account
+        + Account to_account
+    }
 
-  class Account {
-    + number: str
-    + balance: float
-    + type: str  # Checking, Savings, etc.
-    + interest_rate: float
-    + transactions: list[Transaction]
-  }
-
-  class Transaction {
-    + date: datetime
-    + amount: float
-    + type: str  # Deposit, Withdrawal, Transfer
-    + from_account: Account
-    + to_account: Account
-  }
-
-  class ATM {
-    + location: str
-    + serial_number: str
-    + status: str  # Online, Offline, Maintenance
-    + cash_available: float
-  }
+    class ATM {
+        + str location
+        + str serial_number
+        + str status
+        + float cash_available
+    }
